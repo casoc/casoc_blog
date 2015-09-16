@@ -1,0 +1,64 @@
+<% provide(:title, "Article show") %>
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>
+
+
+<section id="content">
+<div class="wrap-content">
+  <div class="row block">
+    <div id="main-content" class="col-2-3">
+      <div class="wrap-col">
+        <article>
+        <div class="heading">
+          <h2><%= @article.title %></h2>
+        </div>
+        <div class="content">
+          分类:<%= link_to @article.category.name, "/articles?category_id=#{@article.category.id}" %>
+          <img src="<%= @article.gallery.image.url %>" width="100%"/>
+          <%= raw @article.content %>
+        </div>
+        <div class="info">
+          <p>By <%= @article.user.user_name %> on <%= @article.updated_at %></p>
+        </div>
+        </article>
+
+        <section>
+        <% @article.comments.each do |comment| %>
+          <article>
+          <div class="subject"
+            <p><%= comment.subject  %></p>
+          </div>
+          <div class="content">
+            <p><%= comment.message %></p>
+          </div>
+          <div>
+            <p>By <a href="mailto:<%= comment.email %>"><%= comment.email %></a> on <%= comment.created_at.to_s(:db) %></p>
+          </div>
+          </article>
+        <% end %>
+        </section>
+
+        <section>
+        <h3>Leave a Comment</h3>
+
+        <%= form_tag({controller: "comments", action: "create", method: 'post'}, id: "contact-form") do %>
+          <fieldset>
+            <label><input name="comment[email]" value="Email" onBlur="if(this.value=='') this.value='Email'" onFocus="if(this.value =='Email' ) this.value=''" /></label>
+            <label><input name="comment[subject]" value="Subject" onBlur="if(this.value=='') this.value='Subject'" onFocus="if(this.value =='Subject' ) this.value=''" /></label>
+            <textarea name="comment[message]" onBlur="if(this.value=='') this.value='Message'" onFocus="if(this.value =='Message' ) this.value=''">Message</textarea>
+            <input type="hidden" name="comment[article_id]" value="<%= @article.id %>">
+            <div class="buttons">
+              <a href="#" onClick="document.getElementById('contact-form').reset()">Clear</a>
+              <a href="#" onClick="document.getElementById('contact-form').submit()">Send</a>
+            </div>
+          </fieldset>
+        <% end %>
+        </section>
+      </div>
+    </div>
+    <%= render 'shared/right_banner' %>
+  </div>
+</div>
+</section>

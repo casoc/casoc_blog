@@ -1,0 +1,27 @@
+<% provide(:title, "Home") %>
+<section id="content">
+<div class="wrap-content">
+  <div class="row block">
+    <div id="main-content" class="col-2-3">
+      <div class="wrap-col">
+        <% @articles.each do |article| %>
+          <article>
+          <div class="heading">
+            <h2><%= link_to article.title, article_path(article)%></h2>
+          </div>
+          <div class="content">
+            分类:<%= link_to article.category.name, "/articles?category_id=#{article.category.id}" %>
+            <%= image_tag article.gallery.image.normal.url, size: '250x100', alt: article.gallery.alt %>
+            <p><%= raw(content_breviary(article.content)) %></p>
+          </div>
+          <div class="info">
+            <p>By <%= article.user.user_name %> on <%= article.created_at.to_s(:db) %> - <%= article.comments.count %> comments</p>
+          </div>
+          </article>
+        <% end %>
+      </div>
+    </div>
+    <%= render 'shared/right_banner' %>
+  </div>
+</div>
+</section>

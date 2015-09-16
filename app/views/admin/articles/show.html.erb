@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+<strong>Title:</strong>
+<%= @article.title %>
+</p>
+
+<p>
+<strong>Content:</strong>
+<%= @article.content %>
+</p>
+
+<p>
+<strong>Category:</strong>
+<%= @article.category_id %>
+</p>
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>
+
+
+<section id="content">
+<div class="wrap-content">
+  <div class="row block">
+    <div id="main-content" class="col-2-3">
+      <div class="wrap-col">
+        <article>
+        <div class="heading">
+          <h2><%= @article.title %></h2>
+        </div>
+        <div class="content">
+          <img src="<%= @article.gallery.image.url %>" width="100%"/>
+          <%= raw @article.content %>
+        </div>
+        <div class="info">
+          <p>By <%= @article.user.name %> on <%= @article.updated_at %></p>
+        </div>
+        </article>
+
+        <section>
+        <h3>Leave a Comment</h3>
+
+        <form id="contact-form" method="post">
+          <fieldset>
+            <label><input name="email" value="Email" onBlur="if(this.value=='') this.value='Email'" onFocus="if(this.value =='Email' ) this.value=''" /></label>
+            <label><input name="subject" value="Subject" onBlur="if(this.value=='') this.value='Subject'" onFocus="if(this.value =='Subject' ) this.value=''" /></label>
+            <textarea onBlur="if(this.value=='') this.value='Message'" onFocus="if(this.value =='Message' ) this.value=''">Message</textarea>
+            <div class="buttons">
+              <a href="#" onClick="document.getElementById('contact-form').reset()">Clear</a>
+              <a href="#" onClick="document.getElementById('contact-form').submit()">Send</a>
+            </div>
+          </fieldset>
+        </form>
+        </section>
+      </div>
+    </div>
+    <%= render 'shard/right_banner' %>
+  </div>
+</div>
+</section>

@@ -1,0 +1,36 @@
+<% provide(:title, "Article index") %>
+<p id="notice"><%= notice %></p>
+<section id="content">
+<% if signed_in? %>
+  <%= link_to 'New Article', new_article_path %>
+<% end %>
+<div class="wrap-content">
+  <div class="row block">
+    <div id="main-content" class="col-2-3">
+      <div class="wrap-col">
+        <% @articles.each do |article| %>
+          <article>
+          <div class="heading">
+            <h2><%= link_to article.title, article_path(article)%></h2>
+            <p>分类:<%= link_to article.category.name, "/articles?category_id=#{article.category.id}" %> 
+            <% if signed_in? %>
+              (<%= link_to "编辑", edit_article_path(article) %>|<%= link_to "删除", article_path(article), :method => :delete, data: { confirm: "确定要删除？删除后将无法恢复。" } %>)
+            <% end %>
+            </p>
+          </div>
+          <div class="content">
+            <%= image_tag article.gallery.image.normal.url, size: '250x100', alt: article.gallery.alt %>
+            <p><%= raw content_breviary(article.content) %></p>
+          </div>
+          <div class="info">
+            <p>By <%= article.user.user_name %> on <%= article.created_at %> - <%= article.comments.count %> comments</p>
+          </div>
+          </article>
+        <% end %>
+      </div>
+      <%= paginate @articles %>
+    </div>
+    <%= render 'shared/right_banner' %>
+  </div>
+</div>
+</section>

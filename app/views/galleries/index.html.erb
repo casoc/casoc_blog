@@ -1,0 +1,20 @@
+<% provide(:title, "Gallery") %>
+<p id="notice"><%= notice %></p>
+<section id="content">
+<% if signed_in? %>
+  <%= link_to 'New Gallery', new_gallery_path %>
+<% end %>
+  <% @galleries.each do |gallery| %>
+    <div>
+      <%= image_tag gallery.image.url, alt: gallery.alt %>
+      <p>
+      <%= gallery.title %>
+      <% if signed_in? %>
+      <span style="float:right">
+        <%= link_to 'Edit', edit_gallery_path(gallery) %>|<%= link_to 'Destroy', gallery, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </span>
+    <% end %>
+      </p>
+    </div>
+  <% end %>
+</section>

@@ -1,0 +1,42 @@
+<header>
+<div class="wrap-header">
+
+  <!--<div class="top">
+    <div class="socials">
+      <ul>
+        <li><a href="#" title="facebook"><img  src="images/socials/facebook-32x32.png"/></a></li>
+        <li><a href="#" title="google"><img  src="images/socials/google-32x32.png"/></a></li>
+        <li><a href="#" title="twitter"><img  src="images/socials/twitter-32x32.png"/></a></li>
+        <li><a href="#" title="rss"><img  src="images/socials/rss-32x32.png"/></a></li>
+        <li><a href="#" title="youtube"><img  src="images/socials/youtube-32x32.png"/></a></li>
+      </ul>
+    </div>
+    <div id="search">
+      <div class="button-search"></div>
+      <input type="text" value="Search..." onFocus="if (this.value == &#39;Search...&#39;) {this.value = &#39;&#39;;}" onBlur="if (this.value == &#39;&#39;) {this.value = &#39;Search...&#39;;}">
+    </div>
+  </div>-->
+
+  <% if is_home_page? %>
+  <div id="logo">
+    <h1>casoc blog</h1>
+    <p>No pain No gain</p>
+  </div>
+  <% end %>
+
+  <nav>
+  <div class="wrap-nav">
+    <div class="menu">
+      <ul>
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Blog', articles_path %></li>
+        <li><%= link_to 'Gallery', galleries_path %></li>
+        <li><%= link_to 'About', about_path %></li>
+        <li><%= link_to 'Contact me', contact_path %></li>
+      </ul>
+    </div>
+  </div>
+  </nav>
+
+</div>
+</header>
