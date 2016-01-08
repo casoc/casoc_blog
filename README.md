@@ -1,28 +1,38 @@
-== README
+##Description
+ This application is a personal blog demo, use Ruby on Rails implement
+ 
+##Technology Stack
+* ruby 2.1.1
+* rails 4.2.0
+ 
+##How To Run
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1. clone the appliction
+2. make sure your evironment have ruby and rails, if your environment don't have these , you can fllow this blow link to set up Rails enviroment :
 
-Things you may want to cover:
+	[How to set up Ruby on Rails](https://ruby-china.org/wiki/install_ruby_guide)
+	
+3. install all dependency gems use bundle command :
 
-* Ruby version
+		bundle install	 
+ 
 
-* System dependencies
+4. rename the database config file to database.yml and config yourself database, database conifg file is in 
 
-* Configuration
+		config/database.yml.example
+		
+5. migrate database use command :
 
-* Database creation
+		bundle exec rake db:migrate 
+		
+6. use blow rake task to initilize admin username and password:
 
-* Database initialization
+		bundle exec rake init_user:create_admin
+		
+7. run server use :
 
-* How to run the test suite
+		rails s
+	
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+	
+		
